@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: rgb(215, 82, 85);
+    }
+
+    #calculator {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      max-width: 300px;
+      margin: auto;
+    }
+
+    input {
+      grid-column: span 4;
+      text-align: right;
+      padding: 10px;
+      font-size: 1.5em;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 1.2em;
+      border-radius: 30%;
+      background-color: black;
+      color: white;
+      /* box-shadow: black; */
+    }
+    #cal{
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+
+<div id="calculator">
+  
+  <input type="text" id="display" readonly>
+
+  <button onclick="clearDisplay()">C</button>
+  <button onclick="appendCharacter('/')">/</button>
+  <button onclick="appendCharacter('*')">*</button>
+  <button onclick="backspace()">←</button>
+
+  <button onclick="appendCharacter('7')">7</button>
+  <button onclick="appendCharacter('8')">8</button>
+  <button onclick="appendCharacter('9')">9</button>
+  <button onclick="appendCharacter('-')">-</button>
+
+  <button onclick="appendCharacter('4')">4</button>
+  <button onclick="appendCharacter('5')">5</button>
+  <button onclick="appendCharacter('6')">6</button>
+  <button onclick="appendCharacter('+')">+</button>
+
+  <button onclick="appendCharacter('1')">1</button>
+  <button onclick="appendCharacter('2')">2</button>
+  <button onclick="appendCharacter('3')">3</button>
+  <button onclick="appendCharacter('%')">%</button>
+
+  <button onclick="appendCharacter('0')">0</button>
+  <button onclick="appendCharacter('00')">00</button>
+  <button onclick="appendCharacter('.')">.</button>
+  <button id="cal" onclick="calculateResult()">=</button>
+</div>
+
+<script>
+  const display = document.getElementById('display');
+
+  function clearDisplay() {
+    display.value = '';
+  }
+
+  function appendCharacter(char) {
+    display.value += char;
+  }
+
+  function backspace() {
+    display.value = display.value.slice(0, -1);
+  }
+
+  function calculateResult() {
+    try {
+      display.value = eval(display.value);
+    } catch (error) {
+      display.value = 'Error';
+    }
+  }
+</script>
+
+</body>
+</html>
